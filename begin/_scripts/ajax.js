@@ -33,8 +33,6 @@ function tempToF(kelvin) {
 
 function failHandler(status) {
     console.log(status);
-    const weatherDiv = document.querySelector('#weather');
-    weatherDiv.classList.remove('hidden');
 }
 
 function successHandler(data) {
@@ -55,12 +53,11 @@ function successHandler(data) {
         </p>
     `
     weatherDiv.innerHTML = weatherFragment;
-    weatherDiv.classList.remove('hidden');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const apiKey = 'cc7cd487cdb6c27a6b71455a04520c3e'; // ADD YOUR API KEY BETWEEN THE QUOTES
-    // const apiKey = ''; // ADD YOUR API KEY BETWEEN THE QUOTES
+    // const apiKey = 'cc7cd487cdb6c27a6b71455a04520c3e'; // ADD YOUR API KEY BETWEEN THE QUOTES
+    const apiKey = ''; // ADD YOUR API KEY BETWEEN THE QUOTES
 
     const url = 'https://api.openweathermap.org/data/2.5/weather?q=los+angeles&APPID=' + apiKey;
 
@@ -72,5 +69,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Adding .catch to handle errors
     .catch(function(status) {
        failHandler(status); 
+    })
+    .finally(function() {
+    const weatherDiv = document.querySelector('#weather');
+    weatherDiv.classList.remove('hidden');
     });
+
 });
